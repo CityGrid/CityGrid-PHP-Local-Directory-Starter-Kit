@@ -14,7 +14,7 @@ if(isset($_REQUEST['where'])){ $where = $_REQUEST['where'];} elseif(isset($_POST
       <p><img style="padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; " width="250" align="right" src="http://kinlane-productions.s3.amazonaws.com/citygrid/citygrid_logo.jpg" /></p> 
       <p>I needed to learn more about the <a title="CityGrid APIs" target="" href="http://developer.citygrid.com">CityGrid APIs</a>. &nbsp;What better way than actually build a prototype. &nbsp;I thought it would be good to have a simple local directory that could be deployed all by itself, or as part of another web site.</p> 
       <p>I wanted the directory to look good, without having to do any graphic design, so I used <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> for the user interface (UI). &nbsp;</p> 
-      <p>I put together five pages, allowing you to browse some local business categories in West Hollywood, CA.</p> 
+      <p>I put together five pages, allowing you to browse some local business categories in <?php echo $Site_Where;?>.</p> 
       <ul> 
         <li>Home</li> 
         <li>About</li> 

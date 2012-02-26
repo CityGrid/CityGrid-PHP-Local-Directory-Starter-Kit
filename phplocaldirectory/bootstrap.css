@@ -73,8 +73,7 @@ td {
   font-family: inherit;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+
 }
 ol, ul {
   list-style: none;
@@ -1105,24 +1104,23 @@ table {
   margin-bottom: 18px;
   padding: 0;
   font-size: 13px;
-  border-collapse: collapse;
 }
 table th, table td {
-  padding: 10px 10px 9px;
+  padding: 1px 10px 1px;
   line-height: 18px;
   text-align: left;
 }
 table th {
-  padding-top: 9px;
+  padding-top: 1px;
   font-weight: bold;
   vertical-align: middle;
 }
 table td {
   vertical-align: top;
-  border-top: 1px solid #ddd;
+  border-top: 0px solid #fff;
 }
 table tbody th {
-  border-top: 1px solid #ddd;
+  border-top: 0px solid #ff;
   vertical-align: top;
 }
 .condensed-table th, .condensed-table td {
@@ -2098,6 +2096,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 .pagination {
   height: 36px;
   margin: 18px 0;
+  align: center;
 }
 .pagination ul {
   float: left;

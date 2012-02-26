@@ -1,11 +1,14 @@
 <?php
+date_default_timezone_set("America/Los_Angeles");
+
 $ThisPage = $_SERVER['PHP_SELF'];
 $ThisURL = $_SERVER['REQUEST_URI'];
 $ThisHost = $_SERVER['HTTP_HOST'];								
 
 include "config.php";
 
-include "/var/www/html/system/class-citygrid.php";
+include "/var/www/html/system/class-citygrid-places.php";
+include "/var/www/html/system/class-citygrid-advertising.php";
 include "/var/www/html/system/class-utility.php";
 include "/var/www/html/system/class-flickr-photos.php";
 include "/var/www/html/system/phpFlickr.php";
@@ -82,6 +85,9 @@ include "/var/www/html/system/phpFlickr.php";
             <li><a href="http://hyp3rl0cal.com/contact.php">Contact</a></li>
           
           </ul>
+			<form class="navbar-search pull-left" action="/search.php" style="padding-left: 300px; float: right;">
+			  <input type="text" class="search-query" placeholder="Search" name="what">
+			</form>
         </div>
       </div>
     </div>

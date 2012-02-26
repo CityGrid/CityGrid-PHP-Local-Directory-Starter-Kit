@@ -2,8 +2,12 @@
 
 include "header.php";
 
-// what
-if(isset($_REQUEST['what'])){ $what = $_REQUEST['what'];} elseif(isset($_POST['what'])){$what = $_POST['what']; } else { $what=''; }
+// lat
+if(isset($_REQUEST['lat'])){ $lat = $_REQUEST['lat'];} elseif(isset($_POST['lat'])){$lat = $_POST['lat']; } else { $lat=''; }
+// lat
+if(isset($_REQUEST['lon'])){ $lon = $_REQUEST['lon'];} elseif(isset($_POST['lon'])){$lon = $_POST['lon']; } else { $lon=''; }
+// lat
+if(isset($_REQUEST['radius'])){ $radius = $_REQUEST['radius'];} elseif(isset($_POST['radius'])){$radius = $_POST['radius']; } else { $radius='5'; }
 // type
 if(isset($_REQUEST['type'])){ $type = $_REQUEST['type'];} elseif(isset($_POST['type'])){$type = $_POST['type']; } else { $type=''; }
 // where
@@ -41,8 +45,8 @@ if(isset($_REQUEST['sort'])){ $sort = $_REQUEST['sort'];} elseif(isset($_POST['s
 			$format='json';
 			
 			//Get All Active APIs
-			$citygrid = new citygrid($publishercode);
-			$search = $citygrid->srch_places_where($what,$type,$where,$page,$rpp,$sort,$format,$placement,$has_offers,$histograms,$i);
+			$citygrid = new citygridplaces($publishercode);
+			$search = $citygrid->srch_places_latlong($what,$type,$lat,$lon,$radius,$page,$rpp,$sort,$format,$placement,$has_offers,$histograms,$i);
 						
 			foreach($search as $place) 
 				{

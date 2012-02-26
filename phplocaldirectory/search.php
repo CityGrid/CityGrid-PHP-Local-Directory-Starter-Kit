@@ -30,6 +30,76 @@ if(isset($_REQUEST['sort'])){ $sort = $_REQUEST['sort'];} elseif(isset($_POST['s
 		<?php } ?>
 	</ul>
 
+	<?php
+	$max = 2;
+	$format='json';
+	
+	//Get All Active APIs
+	$citygrid = new citygridads($publishercode);
+	$sponsored = $citygrid->custom_ads_where($what,$where,$max,$format);
+	if(count($sponsored->ads)>0)
+		{
+		?>
+		<p align="right">sponsored listings</p>
+		<table cellpadding="5" cellspacing="5" with="450" align="center" class="zebra-striped">
+			<tbody>				
+			<?php
+			foreach($sponsored->ads as $ad) 
+				{
+					
+				$id = $ad->id;
+				$type = $ad->type;
+				$listingId = $ad->listingId;
+				$name = $ad->name;
+				$street = $ad->street;
+				$city = $ad->city;
+				$state = $ad->state;
+				$zip = $ad->zip;
+				$latitude = $ad->latitude;
+				$longitude = $ad->longitude;
+				$phone = $ad->phone;
+				$tagline = $ad->tagline;
+				$description = $ad->description;
+				$net_ppe = $ad->net_ppe;
+				$reviews = $ad->reviews;
+				$offers = $ad->offers;
+				$distance = $ad->distance;
+				$overallReviewRating = $ad->overallReviewRating;
+				$adDestinationUrl = $ad->adDestinationUrl;
+				$adImageUrl = $ad->adImageUrl;
+		        ?>
+				<tr>
+					<td align="left">
+						<?php if($adImageUrl!='') { ?>
+							<a href="<?php echo $adDestinationUrl;?>" target="_blank">
+								<img src="<?php echo $adImageUrl;?>" width="75" align="left" style="padding: 5px;" />	
+							</a>
+						<?php } ?>
+						<a href="<?php echo $adDestinationUrl;?>" target="_blank"><strong><?php echo $name; ?></strong><br /></a>
+						<!-- Description -->
+						<?php if($description!='') { ?>
+							<?php echo $description;?><br />	
+						<?php } ?>
+						<!-- Tag Line -->
+						<?php if($tagline!='') { ?>
+							<?php echo $tagline;?><br />	
+						<?php } ?>	
+						<?php if($street!=''&&$city!=''&&$state!=''&&$zip!='') { ?>
+				        <address>
+				            <?php echo $street; ?> <?php echo $city; ?>, <?php echo $state; ?> <?php echo $zip; ?><br />
+				        </address>
+				        <?php } ?>	
+					</td>
+				</tr>				        
+		        <?php									
+			 } 	
+			 ?>
+			<tbody>
+		</table>				 
+	<?php
+	}
+	?>	
+
 	<table cellpadding="5" cellspacing="5" with="500" align="center" class="zebra-striped">
 		<tbody>
 		<?php
@@ -38,10 +108,11 @@ if(isset($_REQUEST['sort'])){ $sort = $_REQUEST['sort'];} elseif(isset($_POST['s
 			$has_offers=false;
 			$histograms=false;
 			$i=null;
+			$type=null;
 			$format='json';
 			
 			//Get All Active APIs
-			$citygrid = new citygrid($publishercode);
+			$citygrid = new citygridplaces($publishercode);
 			$search = $citygrid->srch_places_where($what,$type,$where,$page,$rpp,$sort,$format,$placement,$has_offers,$histograms,$i);
 						
 			foreach($search as $place) 
@@ -123,16 +194,16 @@ if(isset($_REQUEST['sort'])){ $sort = $_REQUEST['sort'];} elseif(isset($_POST['s
 			if($maxpage>15) { $maxpage = 15; }
 			?>
 			<?php if($maxpage>1){?>
-				<li class="prev disabled"><a href="search.php?what=Architects&page=<?php echo $page-1;?>">&larr; Previous</a></li>
+				<li class="prev disabled"><a href="search.php?what=<?php echo $what;?>&page=<?php echo $page-1;?>">&larr; Previous</a></li>
 			<?php } ?>
-			<?
+			<?php
 			for ( $counter = 1; $counter <= $maxpage; $counter += 1) 
 				{
 				?>  
 				<li<?php if($counter==$page){?> class="active"<?php } ?>>
 					<a href="search.php?what=<?php echo $what; ?>&page=<?php echo $counter;?>"><?php echo $counter;?></a>
 				</li>
-				<?
+				<?php
 				}		
 			?>
 			<?php if(round($page)!=round($maxpage)){?>

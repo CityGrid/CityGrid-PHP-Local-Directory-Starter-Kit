@@ -17,7 +17,7 @@
 					// Display a Web Ad that is 300 x 250
 					$adid = 1;
 					$publisher = 'citysearch';
-					$citygridad = new citygrid($publishercode);
+					$citygridad = new citygridads($publishercode);
 					$displayad = $citygridad->display_web_ad_300_250($adid,$publisher,$what,$where);						
 					echo $displayad;
 					?>			

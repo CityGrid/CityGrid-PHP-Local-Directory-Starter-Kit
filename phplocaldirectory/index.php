@@ -36,7 +36,7 @@ if(isset($_REQUEST['where'])){ $where = $_REQUEST['where'];} elseif(isset($_POST
 				$rpp=6;
 				$sort='dist';			
 				
-				$citygrid = new citygrid($publishercode);
+				$citygrid = new citygridplaces($publishercode);
 				$search = $citygrid->srch_places_where($what,$type,$where,$page,$rpp,$sort,$format,$placement,$has_offers,$histograms,$i);
 		
 				foreach($search as $place) 
